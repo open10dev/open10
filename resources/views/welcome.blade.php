@@ -1,235 +1,408 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('layouts.app')
 
-    <title>OPEN10</title>
+@section('title', 'OPEN10 - From Development to Deployment')
+@section('description', 'From development to deployment, we turn your open source stack, AI and IDP vision into a production reality.')
 
-    <!-- Fonts -->
-    <link href="https://unpkg.com/@vercel/font@1.0.0/dist/geist-sans.css" rel="stylesheet">
+@section('content')
 
-    <style>
-        :root {
-            --bg: #f7f7f9;
-            --text-primary: #111;
-            --text-secondary: #555;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            min-height: 100vh;
-            background: var(--bg);
-            font-family: "Geist Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 48px 20px;
-            color: var(--text-primary);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            text-align: center;
-        }
-
-        /* ---------- HERO ---------- */
-
-        .brand-title {
-            font-size: clamp(56px, 10vw, 110px);
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            transform: skew(-8deg);
-            margin-bottom: 24px;
-        }
-
-        .brand-title span {
-            font-family: "Geist Sans", sans-serif;
-            color: var(--text-primary);
-        }
-
-        .subtitle {
-            max-width: 720px;
-            margin: 0 auto 64px;
-            font-size: 20px;
-            font-style: italic;
-            line-height: 1.6;
-            color: var(--text-secondary);
-        }
-
-        /* ---------- BOXES ---------- */
-
-        .boxes {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 28px;
-            margin-bottom: 64px;
-        }
-
-        .box {
-            border-radius: 22px;
-            padding: 28px 26px 30px;
-            text-align: left;
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .box:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 28px 60px rgba(0, 0, 0, 0.12);
-        }
-
-        .icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
-            background: rgba(255,255,255,0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .icon svg {
-            width: 22px;
-            height: 22px;
-            stroke-width: 1.6;
-        }
-
-        .box h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .box p {
-            font-size: 15px;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        /* ---------- COLORS ---------- */
-
-        .yellow { background: linear-gradient(135deg, #fff1b8, #fde68a); }
-        .blue   { background: linear-gradient(135deg, #e0e7ff, #c7d2fe); }
-        .green  { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
-        .pink   { background: linear-gradient(135deg, #fce7f3, #fbcfe8); }
-
-        /* ---------- FOOTER ---------- */
-
-        footer {
-            font-size: 16px;
-            color: var(--text-secondary);
-        }
-
-        footer span {
-            color: #e11d48;
-        }
-
-        /* ---------- RESPONSIVE ---------- */
-
-        @media (max-width: 1024px) {
-            .boxes {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .boxes {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-
-    <!-- HERO -->
-    <h1 class="brand-title">
-        <span>OPEN</span><span>10</span>
-    </h1>
-
-    <p class="subtitle">
-        From development to deployment, we turn your open source stack,
-        AI and IDP vision into a production reality.
-    </p>
-
-    <!-- BOXES -->
-    <div class="boxes">
-
-        <div class="box yellow">
-            <div class="icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#111">
-                    <rect x="3" y="4" width="7" height="6" rx="2"/>
-                    <rect x="14" y="4" width="7" height="5" rx="2"/>
-                    <rect x="8" y="14" width="8" height="6" rx="2"/>
-                </svg>
-            </div>
-            <h3>Development Foundations</h3>
-            <p>
-                Design and build modern products on an open-source stack
-                with clean architecture and future-proof patterns.
-            </p>
+<!-- Hero Section -->
+<section class="relative py-20 md:py-32 px-5 overflow-hidden bg-gradient-to-br from-purple-50 via-white to-pink-50">
+    <div class="absolute top-20 right-20 w-72 h-72 bg-purple-300/20 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-20 left-20 w-96 h-96 bg-pink-300/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+    
+    <div class="relative max-w-5xl mx-auto text-center">
+        <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 text-gray-900" style="letter-spacing: 0.08em; transform: skew(-8deg);">
+            OPEN10
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 italic max-w-3xl mx-auto leading-relaxed mb-12">
+            From development to deployment, we turn your open source stack, AI and IDP vision into a production reality.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="{{ route('contact') }}" class="inline-flex items-center gap-3 bg-gradient-to-r from-accent to-pink-600 text-white px-10 py-4 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                <span>Get Started</span>
+                <span class="text-xl">→</span>
+            </a>
+            <a href="{{ route('work') }}" class="inline-flex items-center gap-3 bg-white border-2 border-gray-200 text-gray-900 px-10 py-4 rounded-2xl font-bold text-lg hover:border-accent hover:text-accent hover:-translate-y-1 transition-all duration-300">
+                <span>View Our Work</span>
+            </a>
         </div>
-
-        <div class="box blue">
-            <div class="icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#111">
-                    <circle cx="12" cy="12" r="7"/>
-                    <path d="M12 5v-2M12 21v-2M5 12H3M21 12h-2"/>
-                </svg>
-            </div>
-            <h3>AI-Assisted Delivery</h3>
-            <p>
-                Embed AI into your pipelines with code generation,
-                review, and copilots tuned to your domain.
-            </p>
-        </div>
-
-        <div class="box green">
-            <div class="icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#111">
-                    <rect x="3" y="4" width="6" height="5" rx="1.5"/>
-                    <rect x="15" y="4" width="6" height="5" rx="1.5"/>
-                    <rect x="9" y="14" width="6" height="5" rx="1.5"/>
-                </svg>
-            </div>
-            <h3>Internal Developer Platforms</h3>
-            <p>
-                Build IDPs with golden paths, self-service environments,
-                and paved roads for every service.
-            </p>
-        </div>
-
-        <div class="box pink">
-            <div class="icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#111">
-                    <path d="M12 3l7 3v6c0 4.4-2.7 8-7 9-4.3-1-7-4.6-7-9V6l7-3z"/>
-                    <path d="M9 12l2 2 4-4"/>
-                </svg>
-            </div>
-            <h3>Secured Operations</h3>
-            <p>
-                Automated deployments, observability, and guardrails
-                for reliable, reversible releases.
-            </p>
-        </div>
-
     </div>
+</section>
 
-    <!-- FOOTER -->
-    <footer>
-        Developed with <span>❤</span> by OPEN10
-    </footer>
+<!-- Services Preview Section -->
+<section class="py-20 px-5 bg-white">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <a href="{{ route('services.development') }}" class="group bg-gradient-to-br from-yellow-100 to-yellow-50 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-12 h-12 bg-white/60 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="7" height="6" rx="2"/>
+                        <rect x="14" y="4" width="7" height="5" rx="2"/>
+                        <rect x="8" y="14" width="8" height="6" rx="2"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">Development Foundations</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    Design and build modern products on an open-source stack with clean architecture and future-proof patterns.
+                </p>
+            </a>
 
-</div>
+            <a href="{{ route('services.ai-delivery') }}" class="group bg-gradient-to-br from-blue-100 to-blue-50 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-12 h-12 bg-white/60 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="7"/>
+                        <path d="M12 5v-2M12 21v-2M5 12H3M21 12h-2"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">AI-Assisted Delivery</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    Embed AI into your pipelines with code generation, review, and copilots tuned to your domain.
+                </p>
+            </a>
 
-</body>
-</html>
+            <a href="{{ route('services.idp') }}" class="group bg-gradient-to-br from-green-100 to-green-50 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-12 h-12 bg-white/60 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="6" height="5" rx="1.5"/>
+                        <rect x="15" y="4" width="6" height="5" rx="1.5"/>
+                        <rect x="9" y="14" width="6" height="5" rx="1.5"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">Internal Developer Platforms</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    Build IDPs with golden paths, self-service environments, and paved roads for every service.
+                </p>
+            </a>
+
+            <a href="{{ route('services.devops') }}" class="group bg-gradient-to-br from-pink-100 to-pink-50 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-12 h-12 bg-white/60 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 3l7 3v6c0 4.4-2.7 8-7 9-4.3-1-7-4.6-7-9V6l7-3z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">Secured Operations</h3>
+                <p class="text-gray-700 leading-relaxed">
+                    Automated deployments, observability, and guardrails for reliable, reversible releases.
+                </p>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<!-- What We Do Section -->
+<section class="py-20 px-5 bg-gradient-to-br from-gray-50 to-white">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-accent via-pink-500 to-purple-600 bg-clip-text text-transparent">
+                What We Do
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Partner with engineers who understand both the code and the craft
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="group bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-14 h-14 mb-6 group-hover:scale-110 transition-transform bg-gradient-to-br from-purple-100 to-purple-50 rounded-2xl flex items-center justify-center">
+                    <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-gray-900">Building Production-Grade Open Source Solutions</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    We develop plugins, custom functionality, and core features for open-source projects. Whether you're maintaining a popular OSS project or building your product on one, we provide the engineering capacity to ship faster.
+                </p>
+            </div>
+            
+            <div class="group bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-14 h-14 mb-6 group-hover:scale-110 transition-transform bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl flex items-center justify-center">
+                    <svg class="w-7 h-7 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-gray-900">Implementing AI-Powered Development Workflows</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    We integrate AI into your development lifecycle—code generation, intelligent reviews, domain-specific copilots—so your team can focus on solving problems, not repetitive tasks.
+                </p>
+            </div>
+            
+            <div class="group bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-14 h-14 mb-6 group-hover:scale-110 transition-transform bg-gradient-to-br from-green-100 to-green-50 rounded-2xl flex items-center justify-center">
+                    <svg class="w-7 h-7 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-gray-900">Creating Internal Developer Platforms That Scale</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    We design and build IDPs that give your developers self-service superpowers: golden paths, automated environments, and guardrails that keep production stable.
+                </p>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="{{ route('services.index') }}" class="inline-flex items-center gap-2 text-accent font-semibold text-lg hover:gap-4 transition-all">
+                Learn more about our services
+                <span>→</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Who We Help Section -->
+<section class="py-20 px-5 bg-white">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-accent via-pink-500 to-purple-600 bg-clip-text text-transparent">
+                Who We Help
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                From open-source maintainers to enterprise CTOs, we partner with teams who value quality
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <a href="{{ route('solutions.oss-maintainers') }}" class="group bg-gradient-to-br from-purple-50 to-white rounded-3xl p-8 border border-purple-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-14 h-14 mb-6 group-hover:scale-110 transition-transform bg-gradient-to-br from-purple-100 to-purple-50 rounded-2xl flex items-center justify-center">
+                    <svg class="w-7 h-7 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-gray-900">Open Source Maintainers</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    Scale your project with expert contributions and sustainable business models.
+                </p>
+                <span class="text-accent font-semibold inline-flex items-center gap-2 group-hover:gap-4 transition-all">
+                    Learn More <span>→</span>
+                </span>
+            </a>
+            
+            <a href="{{ route('solutions.engineering-teams') }}" class="group bg-gradient-to-br from-blue-50 to-white rounded-3xl p-8 border border-blue-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-14 h-14 mb-6 group-hover:scale-110 transition-transform bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl flex items-center justify-center">
+                    <svg class="w-7 h-7 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-gray-900">Engineering Teams</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    Navigate complexity and accelerate delivery with open-source best practices.
+                </p>
+                <span class="text-accent font-semibold inline-flex items-center gap-2 group-hover:gap-4 transition-all">
+                    Learn More <span>→</span>
+                </span>
+            </a>
+            
+            <a href="{{ route('solutions.leadership') }}" class="group bg-gradient-to-br from-pink-50 to-white rounded-3xl p-8 border border-pink-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div class="w-14 h-14 mb-6 group-hover:scale-110 transition-transform bg-gradient-to-br from-pink-100 to-pink-50 rounded-2xl flex items-center justify-center">
+                    <svg class="w-7 h-7 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-gray-900">CTOs & Engineering Leaders</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    Modernize platforms and improve productivity with strategic technical partnership.
+                </p>
+                <span class="text-accent font-semibold inline-flex items-center gap-2 group-hover:gap-4 transition-all">
+                    Learn More <span>→</span>
+                </span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose OPEN10 Section -->
+<section class="py-20 px-5 bg-gradient-to-br from-gray-50 to-white">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-accent via-pink-500 to-purple-600 bg-clip-text text-transparent">
+                Why Choose OPEN10
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Built on open standards. No vendor lock-in. Production-ready from day one.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-gradient-to-br from-white to-purple-50 rounded-3xl p-8 border border-purple-100 shadow-lg">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Deep Open Source Expertise</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            We're active contributors and maintainers. We understand OSS licensing, governance, and community dynamics.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-br from-white to-blue-50 rounded-3xl p-8 border border-blue-100 shadow-lg">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">AI-Native Development</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            We're using AI in production and can help you do the same with practical implementations that deliver ROI.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-br from-white to-green-50 rounded-3xl p-8 border border-green-100 shadow-lg">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-100 to-green-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Production-Hardened Experience</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            We've built systems handling millions of requests and know what works at scale. Your production is in good hands.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-br from-white to-pink-50 rounded-3xl p-8 border border-pink-100 shadow-lg">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-pink-100 to-pink-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">No Vendor Lock-In</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Our solutions are built on open standards. You own the code, control the platform, and can take it anywhere.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- Social Proof Section - Hidden --}}
+{{-- 
+<section class="py-20 px-5 bg-white">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-accent/10 to-pink-100 rounded-2xl mb-6">
+                <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                </svg>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-accent via-pink-500 to-purple-600 bg-clip-text text-transparent">
+                Trusted by Teams Worldwide
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                From startups to enterprises, open-source maintainers to Fortune 500 teams
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 border border-gray-200 shadow-lg">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-pink-500 flex items-center justify-center text-white text-2xl font-bold">
+                        S
+                    </div>
+                    <div>
+                        <div class="font-bold text-gray-900">Sarah Chen</div>
+                        <div class="text-sm text-gray-600">CTO, TechScale</div>
+                    </div>
+                </div>
+                <p class="text-gray-700 leading-relaxed italic">
+                    "OPEN10 helped us modernize our legacy platform without disrupting operations. Their expertise in open-source technologies and IDP implementation was exactly what we needed."
+                </p>
+                <div class="flex gap-1 mt-4 text-yellow-500">
+                    <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 border border-gray-200 shadow-lg">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white text-2xl font-bold">
+                        M
+                    </div>
+                    <div>
+                        <div class="font-bold text-gray-900">Marcus Rodriguez</div>
+                        <div class="text-sm text-gray-600">Lead Maintainer, OpenFlow</div>
+                    </div>
+                </div>
+                <p class="text-gray-700 leading-relaxed italic">
+                    "As an OSS maintainer, finding engineers who truly understand open-source is rare. OPEN10 delivered features faster than our core team while maintaining code quality."
+                </p>
+                <div class="flex gap-1 mt-4 text-yellow-500">
+                    <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="text-center p-6 bg-gradient-to-br from-purple-50 to-white rounded-2xl">
+                <div class="text-4xl font-bold text-accent mb-2">50+</div>
+                <div class="text-gray-600">Projects Delivered</div>
+            </div>
+            <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-white rounded-2xl">
+                <div class="text-4xl font-bold text-accent mb-2">100%</div>
+                <div class="text-gray-600">Client Satisfaction</div>
+            </div>
+            <div class="text-center p-6 bg-gradient-to-br from-pink-50 to-white rounded-2xl">
+                <div class="text-4xl font-bold text-accent mb-2">24h</div>
+                <div class="text-gray-600">Response Time</div>
+            </div>
+            <div class="text-center p-6 bg-gradient-to-br from-green-50 to-white rounded-2xl">
+                <div class="text-4xl font-bold text-accent mb-2">5+</div>
+                <div class="text-gray-600">Years Experience</div>
+            </div>
+        </div>
+    </div>
+</section>
+--}}
+
+<!-- Final CTA Section -->
+<section class="relative py-20 px-5 overflow-hidden bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
+    <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="relative max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur rounded-2xl mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white drop-shadow-lg">
+            Ready to Accelerate Your Project?
+        </h2>
+        <p class="text-xl text-white/90 leading-relaxed mb-8 max-w-3xl mx-auto drop-shadow">
+            Whether you're an open-source maintainer needing extra hands or a company building on open source, we deliver production-grade solutions while keeping everything fully open and transparent.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="{{ route('contact') }}" class="inline-flex items-center gap-3 bg-gradient-to-r from-accent to-pink-600 text-white px-12 py-5 rounded-2xl font-bold text-xl shadow-2xl hover:shadow-accent/50 hover:-translate-y-1 transition-all duration-300">
+                <span>Get Started</span>
+                <span class="text-2xl">→</span>
+            </a>
+            <a href="{{ route('work') }}" class="inline-flex items-center gap-3 bg-white/10 backdrop-blur border-2 border-white/30 text-white px-12 py-5 rounded-2xl font-bold text-xl hover:bg-white/20 hover:-translate-y-1 transition-all duration-300">
+                <span>View Our Work</span>
+            </a>
+        </div>
+        <p class="text-sm text-white/70 mt-6">
+            Response time: Within 24 hours
+        </p>
+    </div>
+</section>
+
+@endsection
