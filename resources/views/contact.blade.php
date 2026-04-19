@@ -21,109 +21,74 @@
     </div>
 </section>
 
-<!-- Contact Form -->
+<!-- Contact Card -->
 <section class="py-20 px-5 bg-white">
     <div class="max-w-2xl mx-auto">
-        <!-- Success Message -->
-        @if(session('success'))
-            <div class="mb-8 bg-green-50 border-l-4 border-green-500 rounded-lg p-6 flex items-start gap-4">
-                <svg class="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+
+        <div class="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-10 md:p-14 shadow-2xl border border-gray-100 text-center">
+
+            <!-- Icon -->
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/10 to-pink-100 mb-6">
+                <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
-                <p class="text-green-800 font-medium">{{ session('success') }}</p>
             </div>
-        @endif
 
-        <!-- Error Message -->
-        @if(session('error'))
-            <div class="mb-8 bg-red-50 border-l-4 border-red-500 rounded-lg p-6 flex items-start gap-4">
-                <svg class="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Drop us an email</h2>
+            <p class="text-gray-500 text-lg mb-2">We'd love to hear about your project.</p>
+            <p class="text-gray-400 text-sm mb-10">We typically respond within a few hours during business days.</p>
+
+            <!-- Primary mailto CTA -->
+            <a href="mailto:hello@open10.dev?subject=Project%20Enquiry&body=Hi%20OPEN10%20team%2C%0A%0AI%27d%20like%20to%20discuss%20a%20project.%0A%0AName%3A%20%0ACompany%3A%20%0AHow%20can%20you%20help%3A%20%0ATimeline%3A%20%0A%0ADetails%3A%20"
+                class="inline-flex items-center justify-center gap-3 w-full bg-gradient-to-r from-accent to-pink-600 text-white px-8 py-5 rounded-2xl font-bold text-lg shadow-xl hover:shadow-accent/40 hover:-translate-y-0.5 transition-all duration-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
-                <p class="text-red-800 font-medium">{{ session('error') }}</p>
-            </div>
-        @endif
+                Open Email App
+            </a>
+            <p class="text-xs text-gray-400 mt-3">Opens your default email client with subject pre-filled</p>
 
-        <!-- Validation Errors -->
-        @if($errors->any())
-            <div class="mb-8 bg-red-50 border-l-4 border-red-500 rounded-lg p-6">
-                <div class="flex items-start gap-4">
-                    <svg class="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <div>
-                        <p class="text-red-800 font-medium mb-2">Please fix the following errors:</p>
-                        <ul class="list-disc list-inside text-red-700 space-y-1">
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        @endif
-
-        <form class="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-10 md:p-12 shadow-2xl border border-gray-100" method="POST" action="{{ route('contact.store') }}">
-            @csrf
-            
-            <div class="mb-6">
-                <label for="name" class="block font-bold mb-2 text-gray-900 text-lg">Name *</label>
-                <input type="text" id="name" name="name" value="{{ old('name') }}" required
-                    class="w-full px-5 py-4 border-2 border-gray-200 rounded-2xl text-lg focus:border-accent focus:outline-none transition-all @error('name') border-red-300 @enderror">
-                @error('name')
-                    <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
-                @enderror
+            <!-- Divider -->
+            <div class="my-8 flex items-center gap-4">
+                <span class="flex-1 h-px bg-gray-100"></span>
+                <span class="text-xs text-gray-300 font-medium uppercase tracking-wider">or write directly to</span>
+                <span class="flex-1 h-px bg-gray-100"></span>
             </div>
 
-            <div class="mb-6">
-                <label for="email" class="block font-bold mb-2 text-gray-900 text-lg">Email *</label>
-                <input type="email" id="email" name="email" value="{{ old('email') }}" required
-                    class="w-full px-5 py-4 border-2 border-gray-200 rounded-2xl text-lg focus:border-accent focus:outline-none transition-all @error('email') border-red-300 @enderror">
-                @error('email')
-                    <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
-                @enderror
+            <!-- Email address copyable -->
+            <div class="inline-flex items-center gap-3 bg-gray-50 border border-gray-200 rounded-xl px-5 py-3 group cursor-pointer select-all"
+                 onclick="copyEmail(this)" title="Click to copy">
+                <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+                <span class="text-gray-700 font-mono text-sm font-medium">hello@open10.dev</span>
+                <span class="copied-label hidden text-xs text-green-600 font-semibold">Copied!</span>
             </div>
 
-            <div class="mb-6">
-                <label for="company" class="block font-bold mb-2 text-gray-900 text-lg">Company/Project</label>
-                <input type="text" id="company" name="company" value="{{ old('company') }}"
-                    class="w-full px-5 py-4 border-2 border-gray-200 rounded-2xl text-lg focus:border-accent focus:outline-none transition-all @error('company') border-red-300 @enderror">
-                @error('company')
-                    <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
-                @enderror
+            <!-- What to include hint -->
+            <div class="mt-10 text-left bg-blue-50/60 border border-blue-100 rounded-2xl p-6">
+                <p class="text-sm font-semibold text-gray-700 mb-3">💡 What to include in your email</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-sm text-gray-500">
+                        <span class="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
+                        Your name &amp; company
+                    </li>
+                    <li class="flex items-center gap-2 text-sm text-gray-500">
+                        <span class="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
+                        What you need help with (development, AI, DevOps…)
+                    </li>
+                    <li class="flex items-center gap-2 text-sm text-gray-500">
+                        <span class="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
+                        Rough timeline &amp; any budget context
+                    </li>
+                    <li class="flex items-center gap-2 text-sm text-gray-500">
+                        <span class="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
+                        Brief description of the project
+                    </li>
+                </ul>
             </div>
+        </div>
 
-            <div class="mb-6">
-                <label for="help_type" class="block font-bold mb-2 text-gray-900 text-lg">How can we help? *</label>
-                <select id="help_type" name="help_type" required
-                    class="w-full px-5 py-4 border-2 border-gray-200 rounded-2xl text-lg focus:border-accent focus:outline-none transition-all @error('help_type') border-red-300 @enderror">
-                    <option value="">Select an option</option>
-                    <option value="development" {{ old('help_type') == 'development' ? 'selected' : '' }}>Development & Engineering</option>
-                    <option value="ai" {{ old('help_type') == 'ai' ? 'selected' : '' }}>AI Implementation</option>
-                    <option value="idp" {{ old('help_type') == 'idp' ? 'selected' : '' }}>Internal Developer Platform</option>
-                    <option value="devops" {{ old('help_type') == 'devops' ? 'selected' : '' }}>DevOps & Infrastructure</option>
-                    <option value="oss" {{ old('help_type') == 'oss' ? 'selected' : '' }}>Open Source Contribution</option>
-                    <option value="consultation" {{ old('help_type') == 'consultation' ? 'selected' : '' }}>Not Sure / Consultation</option>
-                </select>
-                @error('help_type')
-                    <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="mb-8">
-                <label for="message" class="block font-bold mb-2 text-gray-900 text-lg">Tell us about your project *</label>
-                <textarea id="message" name="message" required rows="5"
-                    class="w-full px-5 py-4 border-2 border-gray-200 rounded-2xl text-lg focus:border-accent focus:outline-none transition-all resize-y @error('message') border-red-300 @enderror">{{ old('message') }}</textarea>
-                @error('message')
-                    <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <button type="submit" 
-                class="w-full bg-gradient-to-r from-accent to-pink-600 text-white px-8 py-5 rounded-2xl font-bold text-xl shadow-2xl hover:shadow-accent/50 hover:-translate-y-1 transition-all duration-300">
-                Send Message →
-            </button>
-        </form>
     </div>
 </section>
 
@@ -184,4 +149,16 @@
     </div>
 </section>
 
+@endsection
+
+@section('scripts')
+<script>
+function copyEmail(el) {
+    navigator.clipboard.writeText('hello@open10.dev').then(function() {
+        var label = el.querySelector('.copied-label');
+        label.classList.remove('hidden');
+        setTimeout(function() { label.classList.add('hidden'); }, 2000);
+    });
+}
+</script>
 @endsection
