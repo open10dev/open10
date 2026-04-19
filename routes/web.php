@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PageController;
@@ -47,3 +48,24 @@ Route::get('/resources', [PageController::class, 'resources'])->name('resources'
 // Newsletter Subscription
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'unsubscribe'])->name('newsletter.unsubscribe');
+
+// Admin Panel
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/register', [AdminController::class, 'registerForm'])->name('register');
+    Route::post('/register', [AdminController::class, 'register'])->name('register.post');
+    Route::get('/login', [AdminController::class, 'loginForm'])->name('login');
+    Route::post('/login', [AdminController::class, 'login'])->name('login.post');
+    Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+
+    Route::middleware('admin.auth')->group(function () {
+        Route::get('/contacts', [AdminController::class, 'contacts'])->name('contacts.index');
+        Route::get('/contacts/{contact}', [AdminController::class, 'contactShow'])->name('contacts.show');
+        Route::delete('/contacts/{contact}', [AdminController::class, 'contactDelete'])->name('contacts.delete');
+
+        Route::get('/subscribers', [AdminController::class, 'subscribers'])->name('subscribers.index');
+        Route::delete('/subscribers/{subscriber}', [AdminController::class, 'subscriberDelete'])->name('subscribers.delete');
+
+        Route::get('/visitors', [AdminController::class, 'visitors'])->name('visitors.index');
+        Route::delete('/visitors/{visitor}', [AdminController::class, 'visitorDelete'])->name('visitors.delete');
+    });
+});

@@ -371,6 +371,52 @@
 </section>
 --}}
 
+<!-- Newsletter Subscribe Section -->
+<section class="py-20 px-5 bg-white">
+    <div class="max-w-3xl mx-auto">
+        <div class="bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-3xl px-10 py-14 text-center relative overflow-hidden shadow-2xl">
+            <!-- Blobs -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+
+            <div class="relative">
+                <div class="inline-flex items-center justify-center w-14 h-14 bg-white/10 rounded-2xl mb-6">
+                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">Stay in the Loop</h2>
+                <p class="text-gray-300 text-lg mb-8 max-w-xl mx-auto">
+                    Monthly insights on open source, AI, and platform engineering — straight to your inbox. No spam, ever.
+                </p>
+
+                @if(session('success') && str_contains(session('success'), 'subscri'))
+                    <div class="bg-green-500/20 border border-green-500/40 rounded-2xl px-6 py-4 flex items-center justify-center gap-3 max-w-md mx-auto">
+                        <svg class="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <p class="text-green-300 font-medium text-sm">{{ session('success') }}</p>
+                    </div>
+                @else
+                    <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" method="POST" action="{{ route('newsletter.subscribe') }}">
+                        @csrf
+                        <input type="email" name="email" placeholder="your@email.com" required
+                            class="flex-1 px-5 py-3.5 bg-white/10 border border-white/20 text-white placeholder-gray-400 rounded-xl text-base focus:bg-white/15 focus:border-accent focus:outline-none transition-all">
+                        <button type="submit"
+                            class="px-7 py-3.5 bg-gradient-to-r from-accent to-pink-600 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-accent/40 hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap">
+                            Subscribe →
+                        </button>
+                    </form>
+                    @if($errors->has('email'))
+                        <p class="text-red-400 text-sm mt-3">{{ $errors->first('email') }}</p>
+                    @endif
+                    <p class="text-gray-500 text-xs mt-4">Unsubscribe any time. We respect your inbox.</p>
+                @endif
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Final CTA Section -->
 <section class="relative py-20 px-5 overflow-hidden bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
     <div class="absolute inset-0 opacity-20">

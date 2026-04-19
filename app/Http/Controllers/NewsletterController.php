@@ -52,7 +52,7 @@ class NewsletterController extends Controller
                 'user_agent' => $request->userAgent(),
             ]);
 
-            return back()->with('success', 'Thank you for subscribing! You will receive our monthly updates.');
+            return back()->with('success', 'Thank you for subscribing! You\'ll receive updates directly from the OPEN10 team.');
 
         } catch (\Exception $e) {
             return back()->with('error', 'Something went wrong. Please try again later.');
