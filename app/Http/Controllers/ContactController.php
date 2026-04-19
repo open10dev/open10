@@ -44,7 +44,7 @@ class ContactController extends Controller
         } catch (\Illuminate\Validation\ValidationException $e) {
             return back()->withErrors($e->validator)->withInput();
         } catch (\Exception $e) {
-            return back()->with('error', 'Something went wrong. Please try again or email us at hello@open10.dev')->withInput();
+            return back()->with('error', 'Something went wrong. Please try again or email us at contact@open10.dev')->withInput();
         }
     }
 }

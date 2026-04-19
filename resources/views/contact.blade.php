@@ -39,7 +39,7 @@
             <p class="text-gray-400 text-sm mb-10">We typically respond within a few hours during business days.</p>
 
             <!-- Primary mailto CTA -->
-            <a href="mailto:hello@open10.dev?subject=Project%20Enquiry&body=Hi%20OPEN10%20team%2C%0A%0AI%27d%20like%20to%20discuss%20a%20project.%0A%0AName%3A%20%0ACompany%3A%20%0AHow%20can%20you%20help%3A%20%0ATimeline%3A%20%0A%0ADetails%3A%20"
+            <a href="mailto:contact@open10.dev?subject=Project%20Enquiry&body=Hi%20OPEN10%20team%2C%0A%0AI%27d%20like%20to%20discuss%20a%20project.%0A%0AName%3A%20%0ACompany%3A%20%0AHow%20can%20you%20help%3A%20%0ATimeline%3A%20%0A%0ADetails%3A%20"
                 class="inline-flex items-center justify-center gap-3 w-full bg-gradient-to-r from-accent to-pink-600 text-white px-8 py-5 rounded-2xl font-bold text-lg shadow-xl hover:shadow-accent/40 hover:-translate-y-0.5 transition-all duration-300">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -61,7 +61,7 @@
                 <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
                 </svg>
-                <span class="text-gray-700 font-mono text-sm font-medium">hello@open10.dev</span>
+                <span class="text-gray-700 font-mono text-sm font-medium">contact@open10.dev</span>
                 <span class="copied-label hidden text-xs text-green-600 font-semibold">Copied!</span>
             </div>
 
@@ -154,7 +154,7 @@
 @section('scripts')
 <script>
 function copyEmail(el) {
-    navigator.clipboard.writeText('hello@open10.dev').then(function() {
+    navigator.clipboard.writeText('contact@open10.dev').then(function() {
         var label = el.querySelector('.copied-label');
         label.classList.remove('hidden');
         setTimeout(function() { label.classList.add('hidden'); }, 2000);

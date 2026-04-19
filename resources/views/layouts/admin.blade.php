@@ -20,23 +20,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { height: 100%; overflow: hidden; font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; }
-        body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        html, body { height: 100%; overflow: hidden; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+        #shell { display: flex; height: 100vh; overflow: hidden; background: #f1f5f9; }
+        #sidebar { width: 256px; flex-shrink: 0; height: 100%; display: flex; flex-direction: column; overflow: hidden; background: linear-gradient(180deg,#0c1424 0%,#101e36 60%,#0f172a 100%); border-right: 1px solid rgba(255,255,255,0.05); z-index: 50; transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); }
+        #main-area { flex: 1; min-width: 0; display: flex; flex-direction: column; height: 100%; overflow: hidden; }
+        #page-content { flex: 1; min-height: 0; overflow-y: auto; }
+        #backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 40; backdrop-filter: blur(3px); }
+        #backdrop.show { display: block; }
+        @media (max-width: 1023px) {
+            #sidebar { position: fixed; top: 0; left: 0; bottom: 0; transform: translateX(-100%); }
+            #sidebar.open { transform: translateX(0); box-shadow: 4px 0 32px rgba(0,0,0,0.4); }
+            #hamburger { display: flex !important; }
+        }
+        @media (min-width: 1024px) { #hamburger { display: none !important; } }
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 25% { transform: scale(1.15); } 50% { transform: scale(1); } }        .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px 9px 14px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 500; color: #64748b; border-left: 3px solid transparent; margin-bottom: 2px; transition: background 0.15s, color 0.15s; }
+        .nav-item:hover { background: rgba(255,255,255,0.07); color: #e2e8f0; }
+        .nav-item.active { background: rgba(225,29,72,0.15); color: #fca5a5; border-left-color: #e11d48; font-weight: 600; }
     </style>
 </head>
 <body>
 
-<div style="position:fixed; inset:0; display:flex; overflow:hidden; background:#f8fafc;">
+<div id="shell">
 
     <!-- ===== SIDEBAR ===== -->
-    <aside id="sidebar" style="
-        position:fixed; inset-y:0; left:0; z-index:50; width:256px;
-        background:linear-gradient(180deg,#0f172a 0%,#1e293b 100%);
-        display:flex; flex-direction:column;
-        transform:translateX(-100%);
-        transition:transform 0.3s ease;
-        border-right:1px solid rgba(255,255,255,0.06);
-    " class="lg-sidebar-visible">
+    <aside id="sidebar">
 
         <!-- Brand -->
         <div style="padding:20px 20px 16px; border-bottom:1px solid rgba(255,255,255,0.07); flex-shrink:0;">
@@ -59,11 +69,10 @@
         </div>
 
         <!-- Navigation -->
-        <nav style="flex:1; padding:12px 10px; overflow-y:auto; display:flex; flex-direction:column;">
+        <nav style="flex:1; min-height:0; overflow-y:auto; padding:14px 10px; display:flex; flex-direction:column;">
 
-            <!-- Section label -->
-            <div style="padding:4px 8px 6px;">
-                <span style="font-size:10px; font-weight:700; color:#3d4f66; letter-spacing:0.8px; text-transform:uppercase;">Overview</span>
+            <div style="padding:2px 12px 8px;">
+                <span style="font-size:10px; font-weight:700; color:#2d4060; letter-spacing:1px; text-transform:uppercase;">Overview</span>
             </div>
 
 @php
@@ -75,44 +84,18 @@
 @endphp
 
             @foreach($navItems as $item)
-            @php $isActive = request()->routeIs($item['match']); @endphp
-            <a href="{{ route($item['route']) }}" style="
-                display:flex; align-items:center; gap:10px;
-                padding:9px 10px 9px 12px; border-radius:8px;
-                text-decoration:none; margin-bottom:2px;
-                font-size:13px; font-weight:500; line-height:1;
-                transition:background 0.15s, color 0.15s;
-                {{ $isActive ? 'background:rgba(225,29,72,0.14); color:#fca5a5;' : 'color:#7d92aa;' }}
-            " @if(!$isActive)
-               onmouseover="this.style.background='rgba(255,255,255,0.07)';this.style.color='#dde4ee';"
-               onmouseout="this.style.background='transparent';this.style.color='#7d92aa';"
-               @endif>
-                @if($isActive)
-                    <div style="width:3px; height:18px; background:#e11d48; border-radius:99px; flex-shrink:0;"></div>
-                @else
-                    <div style="width:3px; height:18px; flex-shrink:0;"></div>
-                @endif
+            @php $active = request()->routeIs($item['match']); @endphp
+            <a href="{{ route($item['route']) }}" class="nav-item {{ $active ? 'active' : '' }}">
                 <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" style="flex-shrink:0;">{!! $item['icon'] !!}</svg>
                 <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ $item['label'] }}</span>
             </a>
             @endforeach
 
-            <!-- Divider + Site section -->
-            <div style="margin:14px 0 10px; border-top:1px solid rgba(255,255,255,0.07);"></div>
-            <div style="padding:0 8px 6px;">
-                <span style="font-size:10px; font-weight:700; color:#3d4f66; letter-spacing:0.8px; text-transform:uppercase;">Site</span>
+            <div style="margin:14px 0 10px; border-top:1px solid rgba(255,255,255,0.05);"></div>
+            <div style="padding:2px 12px 8px;">
+                <span style="font-size:10px; font-weight:700; color:#2d4060; letter-spacing:1px; text-transform:uppercase;">Site</span>
             </div>
-
-            <!-- View Website -->
-            <a href="{{ url('/') }}" target="_blank" style="
-                display:flex; align-items:center; gap:10px;
-                padding:9px 10px 9px 12px; border-radius:8px;
-                text-decoration:none; color:#7d92aa;
-                font-size:13px; font-weight:500; line-height:1;
-                transition:background 0.15s, color 0.15s;
-            " onmouseover="this.style.background='rgba(255,255,255,0.07)';this.style.color='#dde4ee';"
-               onmouseout="this.style.background='transparent';this.style.color='#7d92aa';">
-                <div style="width:3px; height:18px; flex-shrink:0;"></div>
+            <a href="{{ url('/') }}" target="_blank" class="nav-item">
                 <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" style="flex-shrink:0;">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
@@ -154,32 +137,17 @@
         </div>
     </aside>
 
-    <!-- Sidebar backdrop (mobile) -->
-    <div id="sidebarBackdrop" onclick="closeSidebar()" style="
-        display:none; position:fixed; inset:0;
-        background:rgba(0,0,0,0.5); z-index:40;
-        backdrop-filter:blur(2px);
-    "></div>
+    <!-- Mobile backdrop -->
+    <div id="backdrop" onclick="closeSidebar()"></div>
 
-    <!-- ===== MAIN CONTENT ===== -->
-    <div style="flex:1; display:flex; flex-direction:column; min-width:0; margin-left:0;" class="lg-main-offset" id="mainContent">
+    <!-- ===== MAIN AREA ===== -->
+    <div id="main-area">
 
         <!-- Top Bar -->
-        <header style="
-            background:white; border-bottom:1px solid #f1f5f9;
-            position:sticky; top:0; z-index:30;
-            padding:0 24px; height:60px;
-            display:flex; align-items:center; gap:12px;
-            box-shadow:0 1px 3px rgba(0,0,0,0.04);
-        ">
-            <!-- Hamburger (mobile only) -->
-            <button id="hamburger" onclick="openSidebar()" style="
-                display:flex; align-items:center; justify-content:center;
-                width:36px; height:36px; border-radius:8px; border:none;
-                background:transparent; cursor:pointer; color:#64748b;
-                transition:all 0.15s;
-            " onmouseover="this.style.background='#f1f5f9';this.style.color='#334155';"
-               onmouseout="this.style.background='transparent';this.style.color='#64748b';">
+        <header style="height:60px; flex-shrink:0; background:white; border-bottom:1px solid #e2e8f0; display:flex; align-items:center; padding:0 24px; gap:12px; box-shadow:0 1px 0 #f1f5f9;">
+            <button id="hamburger" onclick="openSidebar()" style="display:none; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; border:1px solid #e2e8f0; background:white; cursor:pointer; color:#64748b; flex-shrink:0; transition:all 0.15s;"
+                onmouseover="this.style.background='#f8fafc';"
+                onmouseout="this.style.background='white';">
                 <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
@@ -242,35 +210,40 @@
         </div>
         @endif
 
-        <!-- Page Content -->
-        <main style="flex:1; overflow-y:auto; padding:20px 24px 24px; min-height:0;">
-            @yield('content')
-        </main>
+        <!-- Page content: only this scrolls -->
+        <div id="page-content">
+            <div style="padding:24px;">
+                @yield('content')
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer style="flex-shrink:0; background:#1a1a1a; border-top:2px solid rgba(225,29,72,0.3); padding:12px 24px;">
+            <div style="display:flex; flex-direction:row; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+                <div style="font-size:12px; color:#6b7280;">
+                    &copy; {{ date('Y') }} OPEN10. All rights reserved.
+                </div>
+                <div style="font-size:13px; color:#d1d5db; font-weight:500;">
+                    Developed with <span style="color:#e11d48; display:inline-block; animation:heartbeat 1.5s ease-in-out infinite;">❤</span>
+                    by <a href="https://open10.dev" target="_blank" rel="noopener" style="color:#d1d5db; text-decoration:none; transition:color 0.2s;"
+                          onmouseover="this.style.color='#e11d48';" onmouseout="this.style.color='#d1d5db';">OPEN10</a>
+                </div>
+            </div>
+        </footer>
 
     </div>
 </div>
 
-<style>
-    @media (min-width: 1024px) {
-        .lg-sidebar-visible { transform: translateX(0) !important; }
-        .lg-main-offset { margin-left: 256px !important; }
-        #hamburger { display: none !important; }
-    }
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 99px; }
-    ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
-</style>
-
 <script>
     function openSidebar() {
-        document.getElementById('sidebar').style.transform = 'translateX(0)';
-        document.getElementById('sidebarBackdrop').style.display = 'block';
+        document.getElementById('sidebar').classList.add('open');
+        document.getElementById('backdrop').classList.add('show');
     }
     function closeSidebar() {
-        document.getElementById('sidebar').style.transform = 'translateX(-100%)';
-        document.getElementById('sidebarBackdrop').style.display = 'none';
+        document.getElementById('sidebar').classList.remove('open');
+        document.getElementById('backdrop').classList.remove('show');
     }
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSidebar(); });
 </script>
 
 @yield('scripts')
